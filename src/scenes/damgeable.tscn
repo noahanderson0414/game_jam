@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bvcnuvq6r5osg"]
+
+[ext_resource type="Script" uid="uid://b2ymk1sm0hkx1" path="res://src/scripts/Damageable.gd" id="1_8g6wf"]
+[ext_resource type="PackedScene" uid="uid://cupi38gvopu58" path="res://src/scenes/UI/healthbar.tscn" id="2_vfbqg"]
+
+[node name="Damgeable" type="Node3D"]
+script = ExtResource("1_8g6wf")
+
+[node name="Healthbar" parent="." instance=ExtResource("2_vfbqg")]
