@@ -10,6 +10,8 @@ radius = 0.125
 height = 0.25
 
 [node name="Hook" type="RigidBody3D"]
+contact_monitor = true
+max_contacts_reported = 1
 script = ExtResource("1_l4ei1")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -17,3 +19,5 @@ shape = SubResource("SphereShape3D_qwhrb")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("SphereMesh_l4ei1")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

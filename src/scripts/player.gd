@@ -10,6 +10,8 @@ extends RigidBody3D
 
 @onready var target_rotation := Vector3(camera.rotation.x, rotation.y, 0.0)
 
+var hooks: Array[Hook]
+
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
@@ -19,15 +21,23 @@ func _unhandled_input(event: InputEvent) -> void:
 		target_rotation.x = clampf(target_rotation.x + delta.y, -PI / 2.0, PI / 2.0)
 		target_rotation.y = wrapf(target_rotation.y + delta.x, -TAU, TAU)
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	camera.rotation.x = target_rotation.x
 	rotation.y = target_rotation.y
 	
 	if Input.is_action_just_pressed("cast_rod"):
 		spawn_hook()
+	
+	if Input.is_action_just_released("reel_rod"):
+		destroy_hook()
 
 func spawn_hook() -> void:
 	var hook := hook_scene.instantiate()
+	hooks.push_back(hook)
 	get_tree().root.add_child(hook)
 	hook.global_transform = hook_spawn.global_transform
 	hook.cast()
+
+func destroy_hook() -> void:
+	var hook: Hook = hooks.pop_front()
+	hook.queue_free()
