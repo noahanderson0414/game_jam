@@ -31,7 +31,6 @@ environment = SubResource("Environment_vua8w")
 transform = Transform3D(0.8660254, 0.4698463, -0.17101008, 0, 0.34202015, 0.9396926, 0.5, -0.81379765, 0.29619813, 0, 0, 0)
 
 [node name="Floor" type="StaticBody3D" parent="WorldEnvironment"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="WorldEnvironment/Floor"]
 shape = SubResource("WorldBoundaryShape3D_xshpu")
@@ -40,3 +39,4 @@ shape = SubResource("WorldBoundaryShape3D_xshpu")
 mesh = SubResource("PlaneMesh_wgtlw")
 
 [node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
