@@ -40,4 +40,7 @@ func spawn_hook() -> void:
 
 func destroy_hook() -> void:
 	var hook: Hook = hooks.pop_front()
-	hook.queue_free()
+	if not hook:
+		return
+	
+	hook.destroy()
