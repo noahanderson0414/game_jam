@@ -7,13 +7,18 @@ var frozen := false
 
 @export_group("References")
 @export var player: Player
+@export var line: Line2D
 @export_group("Properties")
 @export var impulse := Vector3(0.0, 0.0, -10.0)
 @export var target: HookTarget:
 	get:
 		return _target
 
-func _physics_process(delta: float) -> void:
+func _process(delta: float) -> void:
+	if line:
+		line.set_point_position(1, player.camera.unproject_position(global_position))
+
+func _physics_process(delta: float) -> void:	
 	if frozen:
 		return
 	
@@ -29,6 +34,9 @@ func release() -> void:
 	
 	if player:
 		player._on_hook_released(self)
+	
+	if line:
+		line.queue_free()
 	
 	queue_free()
 

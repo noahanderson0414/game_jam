@@ -1,23 +1,21 @@
 [gd_scene load_steps=4 format=3 uid="uid://cmf2ydkii1gvh"]
 
 [ext_resource type="Script" uid="uid://c88ucg0q462d8" path="res://src/scripts/hook.gd" id="1_l4ei1"]
+[ext_resource type="PackedScene" uid="uid://c31o3jnfrflh1" path="res://assets/Hook.blend" id="2_4xkoo"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_qwhrb"]
-radius = 0.125
-
-[sub_resource type="SphereMesh" id="SphereMesh_qwhrb"]
-radius = 0.125
-height = 0.25
+radius = 0.07
 
 [node name="Hook" type="Area3D"]
+transform = Transform3D(0.99999994, 0, 0, 0, 1.0000001, 0, 0, 0, 1, 0, 0, 0)
 script = ExtResource("1_l4ei1")
 impulse = Vector3(0, 0, -20)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_qwhrb")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("SphereMesh_qwhrb")
+[node name="Hook" parent="." instance=ExtResource("2_4xkoo")]
+transform = Transform3D(-1, 8.742278e-08, 3.821371e-15, 0, -4.371139e-08, 1, 8.742278e-08, 1, 4.371139e-08, 0, 0.014827772, 0.013639696)
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
