@@ -13,6 +13,7 @@ sky_material = SubResource("ProceduralSkyMaterial_1gwx1")
 [sub_resource type="Environment" id="Environment_vua8w"]
 background_mode = 2
 sky = SubResource("Sky_xshpu")
+ssao_enabled = true
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_xshpu"]
 

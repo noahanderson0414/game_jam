@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://ca8hbbxtgdnbw"]
+[gd_scene load_steps=6 format=3 uid="uid://ca8hbbxtgdnbw"]
 
 [ext_resource type="Script" uid="uid://bgqgxuxh1nfsr" path="res://src/scripts/player.gd" id="1_cusn3"]
 [ext_resource type="PackedScene" uid="uid://cmf2ydkii1gvh" path="res://src/scenes/Hooks/hook.tscn" id="2_v4rts"]
 [ext_resource type="PackedScene" uid="uid://bvcnuvq6r5osg" path="res://src/scenes/damgeable.tscn" id="3_hwyk6"]
+[ext_resource type="PackedScene" uid="uid://dgpu2x4l3tr01" path="res://assets/FishingRod.blend" id="3_l2v1k"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_26beo"]
 
@@ -25,6 +26,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
 [node name="HookSpawn" type="Node3D" parent="Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
+[node name="FishingRod" parent="Camera3D" instance=ExtResource("3_l2v1k")]
+transform = Transform3D(1, 0, 0, 0, 0.9764017, 0.21596247, 0, -0.21596247, 0.9764017, 0.52883875, -0.49258077, -0.68100727)
 
 [node name="Damgeable" parent="." instance=ExtResource("3_hwyk6")]
 max_health = 6
