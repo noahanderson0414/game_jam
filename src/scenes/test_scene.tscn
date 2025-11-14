@@ -1,4 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://bek5eylssxoc3"]
+[gd_scene load_steps=8 format=3 uid="uid://bek5eylssxoc3"]
+
+[ext_resource type="Shader" uid="uid://cvgx0a4v5txa3" path="res://src/shaders/checkerboard.gdshader" id="1_xshpu"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1gwx1"]
 
@@ -9,6 +11,17 @@ sky_material = SubResource("ProceduralSkyMaterial_1gwx1")
 background_mode = 2
 sky = SubResource("Sky_xshpu")
 
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_xshpu"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vua8w"]
+render_priority = 0
+shader = ExtResource("1_xshpu")
+shader_parameter/scale = 10.0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_wgtlw"]
+material = SubResource("ShaderMaterial_vua8w")
+size = Vector2(10, 10)
+
 [node name="TestScene" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -16,5 +29,14 @@ environment = SubResource("Environment_vua8w")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
 transform = Transform3D(0.8660254, 0.4698463, -0.17101008, 0, 0.34202015, 0.9396926, 0.5, -0.81379765, 0.29619813, 0, 0, 0)
+
+[node name="Floor" type="StaticBody3D" parent="WorldEnvironment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WorldEnvironment/Floor"]
+shape = SubResource("WorldBoundaryShape3D_xshpu")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="WorldEnvironment/Floor"]
+mesh = SubResource("PlaneMesh_wgtlw")
 
 [node name="Camera3D" type="Camera3D" parent="."]
