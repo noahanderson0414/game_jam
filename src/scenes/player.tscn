@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://ca8hbbxtgdnbw"]
+[gd_scene load_steps=6 format=3 uid="uid://ca8hbbxtgdnbw"]
 
 [ext_resource type="Script" uid="uid://bgqgxuxh1nfsr" path="res://src/scripts/player.gd" id="1_cusn3"]
 [ext_resource type="PackedScene" uid="uid://cmf2ydkii1gvh" path="res://src/scenes/Hooks/hook.tscn" id="2_v4rts"]
 [ext_resource type="PackedScene" uid="uid://bvcnuvq6r5osg" path="res://src/scenes/damgeable.tscn" id="3_hwyk6"]
+[ext_resource type="Script" uid="uid://6yscasah78rf" path="res://src/scenes/player_camera.gd" id="3_l2v1k"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_26beo"]
 
@@ -22,6 +23,8 @@ shape = SubResource("CapsuleShape3D_26beo")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+script = ExtResource("3_l2v1k")
+fovPerUPerS = 0.4
 
 [node name="HookSpawn" type="Node3D" parent="Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
