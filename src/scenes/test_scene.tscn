@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://bek5eylssxoc3"]
+[gd_scene load_steps=9 format=3 uid="uid://bek5eylssxoc3"]
 
 [ext_resource type="Shader" uid="uid://cvgx0a4v5txa3" path="res://src/shaders/checkerboard.gdshader" id="1_xshpu"]
+[ext_resource type="PackedScene" uid="uid://ca8hbbxtgdnbw" path="res://src/scenes/player.tscn" id="2_vua8w"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1gwx1"]
 
@@ -38,5 +39,5 @@ shape = SubResource("WorldBoundaryShape3D_xshpu")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="WorldEnvironment/Floor"]
 mesh = SubResource("PlaneMesh_wgtlw")
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="Player" parent="." instance=ExtResource("2_vua8w")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
