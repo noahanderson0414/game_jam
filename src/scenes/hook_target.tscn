@@ -14,7 +14,7 @@ material = SubResource("StandardMaterial3D_o866c")
 radius = 0.125
 height = 0.25
 
-[node name="HookTarget" type="StaticBody3D" node_paths=PackedStringArray("collision_shape", "hook_position") groups=["hook_targets"]]
+[node name="HookTarget" type="Area3D" node_paths=PackedStringArray("collision_shape", "hook_position") groups=["hook_targets"]]
 script = ExtResource("1_o866c")
 collision_shape = NodePath("CollisionShape3D")
 hook_position = NodePath("HookPosition")

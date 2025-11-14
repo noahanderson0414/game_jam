@@ -1,12 +1,18 @@
 class_name HookTarget
-extends StaticBody3D
+extends Area3D
+
+var _hooked := false
 
 @export_group("References")
 @export var collision_shape: CollisionShape3D
 @export var hook_position: Node3D
+@export_group("Properties")
+@export var hooked: bool:
+	get:
+		return _hooked
 
 func hook() -> void:
-	collision_shape.set_deferred("disabled", true)
+	_hooked = true
 
 func release() -> void:
-	collision_shape.set_deferred("disabled", false)
+	_hooked = false
