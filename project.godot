@@ -15,6 +15,10 @@ run/main_scene="uid://bdiyp2kr4qhhn"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://assets/icon.svg"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/terrain_3d/plugin.cfg")
+
 [input]
 
 cast_rod={

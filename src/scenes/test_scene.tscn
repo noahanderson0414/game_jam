@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://b0emce3qarf3n"]
+[gd_scene load_steps=18 format=3 uid="uid://b0emce3qarf3n"]
 
 [ext_resource type="Shader" uid="uid://cvgx0a4v5txa3" path="res://src/shaders/checkerboard.gdshader" id="1_xshpu"]
 [ext_resource type="PackedScene" uid="uid://ca8hbbxtgdnbw" path="res://src/scenes/player.tscn" id="2_vua8w"]
@@ -25,6 +25,73 @@ shader_parameter/scale = 10.0
 [sub_resource type="PlaneMesh" id="PlaneMesh_wgtlw"]
 material = SubResource("ShaderMaterial_vua8w")
 size = Vector2(10, 10)
+
+[sub_resource type="Gradient" id="Gradient_h66a4"]
+offsets = PackedFloat32Array(0.2, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_bs2eh"]
+noise_type = 2
+frequency = 0.03
+cellular_jitter = 3.0
+cellular_return_type = 0
+domain_warp_enabled = true
+domain_warp_type = 1
+domain_warp_amplitude = 50.0
+domain_warp_fractal_type = 2
+domain_warp_fractal_lacunarity = 1.5
+domain_warp_fractal_gain = 1.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_coolh"]
+noise = SubResource("FastNoiseLite_bs2eh")
+color_ramp = SubResource("Gradient_h66a4")
+seamless = true
+
+[sub_resource type="Terrain3DMaterial" id="Terrain3DMaterial_xmqug"]
+_shader_parameters = {
+&"bias_distance": 512.0,
+&"blend_sharpness": 0.5,
+&"contour_color": Color(0.85, 0.85, 0.19, 1),
+&"contour_interval": 1.0,
+&"contour_thickness": 1.0,
+&"depth_blur": 0.0,
+&"enable_macro_variation": true,
+&"enable_projection": true,
+&"flat_terrain_normals": false,
+&"macro_variation1": Color(1, 1, 1, 1),
+&"macro_variation2": Color(1, 1, 1, 1),
+&"macro_variation_slope": 0.333,
+&"mipmap_bias": 1.0,
+&"noise1_angle": 0.0,
+&"noise1_offset": Vector2(0.5, 0.5),
+&"noise1_scale": 0.04,
+&"noise2_scale": 0.076,
+&"noise_texture": SubResource("NoiseTexture2D_coolh"),
+&"projection_threshold": 0.8
+}
+show_contours = true
+show_checkered = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uwtu5"]
+transparency = 4
+cull_mode = 2
+vertex_color_use_as_albedo = true
+backlight_enabled = true
+backlight = Color(0.5, 0.5, 0.5, 1)
+distance_fade_mode = 1
+distance_fade_min_distance = 128.0
+distance_fade_max_distance = 96.0
+
+[sub_resource type="Terrain3DMeshAsset" id="Terrain3DMeshAsset_e128r"]
+generated_type = 1
+height_offset = 0.5
+material_override = SubResource("StandardMaterial3D_uwtu5")
+last_lod = 0
+last_shadow_lod = 0
+lod0_range = 128.0
+
+[sub_resource type="Terrain3DAssets" id="Terrain3DAssets_u0l24"]
+mesh_list = Array[Terrain3DMeshAsset]([SubResource("Terrain3DMeshAsset_e128r")])
 
 [node name="TestScene" type="Node3D"]
 
@@ -60,6 +127,15 @@ transform = Transform3D(1, 0, 0, 0, 0.051760763, 0.99865955, 0, -0.99865955, 0.0
 [node name="Spikes2" parent="WorldEnvironment" instance=ExtResource("4_h66a4")]
 transform = Transform3D(1, 0, 0, 0, 0.22170168, -0.9751146, 0, 0.9751146, 0.22170168, 0, 1.104459, -2.5866263)
 
+[node name="Terrain3D" type="Terrain3D" parent="WorldEnvironment"]
+data_directory = "res://terrain"
+material = SubResource("Terrain3DMaterial_xmqug")
+assets = SubResource("Terrain3DAssets_u0l24")
+show_contours = true
+show_checkered = true
+top_level = true
+metadata/_edit_lock_ = true
+
 [node name="Player" parent="." instance=ExtResource("2_vua8w")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5223687, 130.52187, -65.16491)
 reel_force = 80.0
